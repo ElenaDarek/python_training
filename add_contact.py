@@ -12,13 +12,13 @@ def is_alert_present(wd):
 
 class add_contact(unittest.TestCase):
     def setUp(self):
-        self.wd = WebDriver()
+        self.wd = WebDriver(capabilities={"marionette": False})
         self.wd.implicitly_wait(60)
-    
-    def test_add_contact(self):
-        success = True
-        wd = self.wd
+
+    def open_home_page(self, wd):
         wd.get("http://localhost/addressbook/")
+
+    def login(self, wd):
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys("admin")
@@ -26,7 +26,13 @@ class add_contact(unittest.TestCase):
         wd.find_element_by_name("pass").clear()
         wd.find_element_by_name("pass").send_keys("secret")
         wd.find_element_by_xpath("//form[@id='LoginForm']/input[3]").click()
+
+    def open_new_contact_page(self, wd):
+        # open new contact page
         wd.find_element_by_link_text("add new").click()
+
+    def create_contact(self, wd):
+        # fill contact form
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("firstname").send_keys("Elena")
@@ -105,10 +111,21 @@ class add_contact(unittest.TestCase):
         wd.find_element_by_name("notes").click()
         wd.find_element_by_name("notes").clear()
         wd.find_element_by_name("notes").send_keys("Test")
+        # submit contact creation
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+
+    def logout(self, wd):
+        # logout
         wd.find_element_by_link_text("Logout").click()
-        self.assertTrue(success)
-    
+
+    def test_add_contact(self):
+        wd = self.wd
+        self.open_home_page(wd)
+        self.login(wd)
+        self.open_new_contact_page(wd)
+        self.create_contact(wd)
+        self.logout(wd)
+
     def tearDown(self):
         self.wd.quit()
 

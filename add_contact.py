@@ -48,14 +48,6 @@ class add_contact(unittest.TestCase):
         wd.find_element_by_name("email").click()
         wd.find_element_by_name("email").clear()
         wd.find_element_by_name("email").send_keys(contact.email)
-        if not wd.find_element_by_xpath("//div[@id='content']/form/select[1]//option[30]").is_selected():
-            wd.find_element_by_xpath("//div[@id='content']/form/select[1]//option[30]").click()
-        if not wd.find_element_by_xpath("//div[@id='content']/form/select[2]//option[4]").is_selected():
-            wd.find_element_by_xpath("//div[@id='content']/form/select[2]//option[4]").click()
-        if not wd.find_element_by_xpath("//div[@id='content']/form/select[3]//option[3]").is_selected():
-            wd.find_element_by_xpath("//div[@id='content']/form/select[3]//option[3]").click()
-        if not wd.find_element_by_xpath("//div[@id='content']/form/select[4]//option[2]").is_selected():
-            wd.find_element_by_xpath("//div[@id='content']/form/select[4]//option[2]").click()
         # submit contact creation
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 

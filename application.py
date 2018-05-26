@@ -9,7 +9,7 @@ class Application:
 
     def open_home_page(self):
         wd = self.wd
-        wd.get("http://localhost/addressbook/")
+        wd.get("http://localhost:8080/addressbook/")
 
     def login(self, username, password):
         wd = self.wd

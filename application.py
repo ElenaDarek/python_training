@@ -7,9 +7,12 @@ class Application:
         self.wd = WebDriver(capabilities={"marionette": False})
         self.wd.implicitly_wait(60)
 
-    def login(self, username, password):
+    def open_home_page(self):
         wd = self.wd
         wd.get("http://localhost:8080/addressbook/")
+
+    def login(self, username, password):
+        wd = self.wd
         if wd.find_element_by_name("user").get_attribute("value"):
             success = False
             print("verifyElementValue failed")

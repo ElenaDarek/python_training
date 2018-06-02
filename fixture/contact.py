@@ -9,22 +9,46 @@ class ContactHelper:
 
     def contact(self, contact):
         wd = self.app.wd
-        # fill contact form
-        wd.find_element_by_name("firstname").click()
-        wd.find_element_by_name("firstname").clear()
-        wd.find_element_by_name("firstname").send_keys(contact.name)
-        wd.find_element_by_name("theform").click()
-        wd.find_element_by_name("lastname").click()
-        wd.find_element_by_name("lastname").clear()
-        wd.find_element_by_name("lastname").send_keys(contact.surname)
-        wd.find_element_by_name("address").click()
-        wd.find_element_by_name("address").clear()
-        wd.find_element_by_name("address").send_keys(contact.address)
-        wd.find_element_by_name("mobile").click()
-        wd.find_element_by_name("mobile").clear()
-        wd.find_element_by_name("mobile").send_keys(contact.phone)
-        wd.find_element_by_name("email").click()
-        wd.find_element_by_name("email").clear()
-        wd.find_element_by_name("email").send_keys(contact.email)
+        self.fill_contact_form(contact)
         # submit contact creation
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+
+    def change_field_value(self, field_name, text):
+        wd = self.app.wd
+        if text is not None:
+            wd.find_element_by_name(field_name).click()
+            wd.find_element_by_name(field_name).clear()
+            wd.find_element_by_name(field_name).send_keys(text)
+
+    def fill_contact_form(self, contact):
+        wd = self.app.wd
+        # fill contact form
+        self.change_field_value("contact_name", contact.name)
+        wd.find_element_by_name("theform").click()
+        self.change_field_value("contact_surname", contact.surname)
+        self.change_field_value("contact_address", contact.address)
+        self.change_field_value("mobile", contact.phone)
+        self.change_field_value("email", contact.email)
+
+    def select_first_contact(self):
+        wd = self.app.wd
+        # select first contact
+        wd.find_element_by_name("selected[]").click()
+
+    def delete_first_contact(self):
+        wd = self.app.wd
+        self.select_first_contact()
+        # submit deletion
+        wd.find_element_by_xpath("//form[@id='LoginForm']/input[3]").click()
+        wd.switch_to_alert().accept()
+
+    def modify_first_contact(self, new_contact_data):
+        wd = self.app.wd
+        self.select_first_contact()
+        #open modification form
+        wd.find_element_by_name("edit").click()
+        #fill contact form
+        self.fill_contact_form(new_contact_data)
+        #submit modification
+        wd.find_element_by_xpath("//form[@id='LoginForm']/input[3]").click()
+        self.return_to_group_page()

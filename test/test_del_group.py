@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8! -*-
 
 def test_delete_first_group(app):
     app.open_home_page()

@@ -11,7 +11,7 @@ class ContactHelper:
         wd = self.app.wd
         self.fill_contact_form(contact)
         # submit contact creation
-        wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+        wd.find_element_by_css_selector("input[value=Delete]").click()
 
     def change_field_value(self, field_name, text):
         wd = self.app.wd
@@ -24,7 +24,6 @@ class ContactHelper:
         wd = self.app.wd
         # fill contact form
         self.change_field_value("contact_name", contact.name)
-        wd.find_element_by_name("theform").click()
         self.change_field_value("contact_surname", contact.surname)
         self.change_field_value("contact_address", contact.address)
         self.change_field_value("mobile", contact.phone)
@@ -39,16 +38,16 @@ class ContactHelper:
         wd = self.app.wd
         self.select_first_contact()
         # submit deletion
-        wd.find_element_by_xpath("//form[@id='LoginForm']/input[3]").click()
+        wd.find_element_by_css_selector("input[value=Delete]").click()
         wd.switch_to_alert().accept()
 
-    def modify_first_contact(self, new_contact_data):
+    def modify_first_contact(self, contact):
         wd = self.app.wd
         self.select_first_contact()
-        #open modification form
-        wd.find_element_by_name("edit").click()
+        # open modification form
+        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img").click()
         #fill contact form
-        self.fill_contact_form(new_contact_data)
+        self.fill_contact_form(contact)
         #submit modification
-        wd.find_element_by_xpath("//form[@id='LoginForm']/input[3]").click()
-        self.return_to_group_page()
+        wd.find_element_by_name("update").click()
+

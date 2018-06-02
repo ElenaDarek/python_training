@@ -1,7 +1,7 @@
 # -*- coding: utf-8-*-
 class Contact:
 
-    def __init__(self, name, surname, address, phone, email):
+    def __init__(self, name=None, surname=None, address=None, phone=None, email=None):
         self.name = name
         self.surname = surname
         self.address = address

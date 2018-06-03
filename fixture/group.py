@@ -1,4 +1,4 @@
-# -*- coding: utf-8!-*-
+# -*- coding: utf-8-*-
 class GroupHelper:
     def __init__(self,app):
         self.app = app

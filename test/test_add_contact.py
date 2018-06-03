@@ -1,4 +1,4 @@
-# -*- coding: utf-8-*-
+# -*- coding: utf-8!-*-
 import pytest
 from model.contact import Contact
 from fixture.application import Application

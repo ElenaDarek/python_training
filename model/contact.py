@@ -1,4 +1,4 @@
-# -*- coding: utf-8-*-
+# -*- coding: utf-8!-*-
 class Contact:
 
     def __init__(self, name=None, surname=None, address=None, phone=None, email=None):

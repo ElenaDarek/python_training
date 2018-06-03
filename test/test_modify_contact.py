@@ -1,3 +1,4 @@
+# -*- coding: utf-8!-*-
 from model.contact import Contact
 
 def test_modify_group_name(app):

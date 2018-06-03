@@ -1,4 +1,4 @@
-# -*- coding: utf-8! -*-
+# -*- coding: utf-8 -*-
 from model.group import Group
 
 def test_modify_group_name(app):

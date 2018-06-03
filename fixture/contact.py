@@ -11,7 +11,7 @@ class ContactHelper:
         wd = self.app.wd
         self.fill_contact_form(contact)
         # submit contact creation
-        wd.find_element_by_css_selector("input[value=Delete]").click()
+        wd.find_element_by_name("submit").click()
 
     def change_field_value(self, field_name, text):
         wd = self.app.wd
@@ -23,11 +23,12 @@ class ContactHelper:
     def fill_contact_form(self, contact):
         wd = self.app.wd
         # fill contact form
-        self.change_field_value("contact_name", contact.name)
-        self.change_field_value("contact_surname", contact.surname)
-        self.change_field_value("contact_address", contact.address)
+        self.change_field_value("firstname", contact.name)
+        self.change_field_value("lastname", contact.surname)
+        self.change_field_value("address", contact.address)
         self.change_field_value("mobile", contact.phone)
         self.change_field_value("email", contact.email)
+
 
     def select_first_contact(self):
         wd = self.app.wd
@@ -50,4 +51,5 @@ class ContactHelper:
         self.fill_contact_form(contact)
         #submit modification
         wd.find_element_by_name("update").click()
+
 

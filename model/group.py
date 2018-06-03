@@ -1,4 +1,4 @@
-# -*- coding: utf-8!-*-
+# -*- coding: utf-8-*-
 class Group:
 
     def __init__(self, name=None, header=None, footer=None):

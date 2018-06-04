@@ -7,7 +7,7 @@ class ContactHelper:
         wd = self.app.wd
         wd.find_element_by_link_text("add new").click()
 
-    def contact(self, contact):
+    def create_contact(self, contact):
         wd = self.app.wd
         self.fill_contact_form(contact)
         # submit contact creation
@@ -51,5 +51,11 @@ class ContactHelper:
         self.fill_contact_form(contact)
         #submit modification
         wd.find_element_by_name("update").click()
+
+    def count(self):
+        wd = self.app.wd
+        return len(wd.find_element_by_name("selected[]"))
+
+
 
 

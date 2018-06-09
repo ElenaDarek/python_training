@@ -9,6 +9,7 @@ class ContactHelper:
 
     def create_contact(self, contact):
         wd = self.app.wd
+        self.open_new_contact_page()
         self.fill_contact_form(contact)
         # submit contact creation
         wd.find_element_by_name("submit").click()

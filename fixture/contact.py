@@ -27,10 +27,10 @@ class ContactHelper:
     def fill_contact_form(self, contact):
         wd = self.app.wd
         # fill contact form
-        self.change_field_value("firstname", contact.name)
-        self.change_field_value("lastname", contact.surname)
+        self.change_field_value("firstname", contact.firstname)
+        self.change_field_value("lastname", contact.lastname)
         self.change_field_value("address", contact.address)
-        self.change_field_value("mobile", contact.phone)
+        self.change_field_value("mobile", contact.mobile)
         self.change_field_value("email", contact.email)
 
 
@@ -67,7 +67,8 @@ class ContactHelper:
             text = element.text
             id = element.find_element_by_name("selected[]").get_attribute("value")
             lastname = element.find_element_by_xpath(".//td[2]").text
-            contacts.append(Contact(surname=lastname, name=text, id=id))
+            firstname = element.find_element_by_xpath(".//td[3]").text
+            contacts.append(Contact(lastname=lastname, firstname=firstname, id=id))
         return contacts
 
 

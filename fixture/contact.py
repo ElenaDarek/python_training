@@ -62,6 +62,7 @@ class ContactHelper:
 
     def get_contact_list(self):
         wd = self.app.wd
+        self.app.open_home_page()
         contacts = []
         for element in wd.find_elements_by_name("entry"):
             text = element.text

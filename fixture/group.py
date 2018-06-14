@@ -82,5 +82,5 @@ class GroupHelper:
             for element in wd.find_elements_by_css_selector("span.group"):
                 text = element.text
                 id = element.find_element_by_name("selected[]").get_attribute("value")
-                self.group_cache.groups.append(Group(name=text, id=id))
+                self.group_cache.append(Group(name=text, id=id))
         return list(self.group_cache)

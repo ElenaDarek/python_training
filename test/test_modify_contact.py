@@ -10,6 +10,7 @@ def test_modify_contact(app):
     contact = Contact(firstname="New name", lastname="Ivanova", address="test_address", mobile="89211110000", email="test@mail.com")
     contact.id = old_contacts[0].id
     app.contact.modify_first_contact(contact)
+    app.open_home_page()
     assert len(old_contacts) == app.contact.count()
     new_contacts = app.contact.get_contact_list()
     old_contacts[0] = contact

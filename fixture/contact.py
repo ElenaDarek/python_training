@@ -59,7 +59,7 @@ class ContactHelper:
         wd = self.app.wd
         self.select_contact_by_index(index)
         # open modification form
-        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img").click()
+        wd.find_elements_by_xpath("//a[contains(@href,'edit.php?id=')]")[index].click()
         #fill contact form
         self.fill_contact_form(contact)
         #submit modification

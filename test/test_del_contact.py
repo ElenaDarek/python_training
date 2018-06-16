@@ -1,4 +1,4 @@
-# -*- coding: utf-8-*-
+# -*- coding: utf-8!-*-
 from model.contact import Contact
 from random import randrange
 

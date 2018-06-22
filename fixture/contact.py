@@ -4,6 +4,7 @@ import re
 
 
 class ContactHelper:
+
     def __init__(self,app):
         self.app = app
 
@@ -37,6 +38,8 @@ class ContactHelper:
         self.change_field_value("work", contact.workphone)
         self.change_field_value("phone2", contact.secondaryphone)
         self.change_field_value("email", contact.email)
+        self.change_field_value("email2", contact.email2)
+        self.change_field_value("email3", contact.email3)
 
     def select_first_contact(self):
         self.select_contact_by_index()
@@ -72,6 +75,7 @@ class ContactHelper:
 
     def count(self):
         wd = self.app.wd
+        self.app.open_home_page()
         return len(wd.find_elements_by_name("selected[]"))
 
     contact_cache = None
@@ -97,9 +101,10 @@ class ContactHelper:
     def open_contact_to_edit_by_index(self, index):
         wd = self.app.wd
         self.app.open_home_page()
-        row = wd.find_elements_by_name("entry")[index]
-        cell = row.find_elements_by_tag_name("td")[7]
-        cell.find_element_by_tag_name("a").click()
+        wd.find_elements_by_xpath("//a[contains(@href,'edit.php?id=')]")[index].click()
+        #row = wd.find_elements_by_name("entry")[index]
+        #cell = row.find_elements_by_tag_name("td")[7]
+        #cell.find_element_by_tag_name("a").click()
 
     def open_contact_view_page_by_index(self, index):
         wd = self.app.wd

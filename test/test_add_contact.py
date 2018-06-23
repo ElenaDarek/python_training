@@ -14,7 +14,7 @@ testdata = [Contact(firstname="", lastname="", address="", homephone="",
                     email3="")] + [
     Contact(firstname=random_string("firstname", 10), lastname=random_string("lastname", 10),
             address=random_string("address", 20),
-            homephone=random_string("homephone", 10), mobilephone=random_string("mobilephone", 10),
+            homephone=random_string("homephone", 15), mobilephone=random_string("mobilephone", 10),
             workphone=random_string("workphone", 20), secondaryphone=random_string("secondaryphone", 20),
             email=random_string("email1", 10), email2=random_string("email2", 10), email3=random_string("email3", 10))
     for i in range(5)]

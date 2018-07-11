@@ -9,15 +9,15 @@ def test_modify_some_contact(app, db, check_ui):
                       secondaryphone="89211000000", email="test@mail.com")
     if len(db.get_contact_list()) == 0:
         app.contact.create_contact(contact)
-    app.open_home_page()
     old_contacts = db.get_contact_list()
+    app.open_home_page()
     random_contact = random.choice(old_contacts)
-    app.contact.modify_contact_by_id(random_contact.id, contact)
-    new_contacts = db.get_contact_list()
-    contact.id = random_contact.id
     old_contacts.remove(random_contact)
+    contact.id = random_contact.id
+    app.contact.modify_contact_by_id(random_contact.id, contact)
+    assert len(old_contacts) + 1 == app.contact.count()
+    new_contacts = db.get_contact_list()
     old_contacts.append(contact)
-    assert old_contacts == new_contacts
     if check_ui:
         assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(), key=Contact.id_or_max)
 

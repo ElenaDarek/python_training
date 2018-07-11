@@ -1,3 +1,4 @@
+# -*- coding: utf-8-*-
 import pymysql.cursors
 from model.group import Group
 from model.contact import Contact

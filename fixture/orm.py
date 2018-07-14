@@ -1,3 +1,4 @@
+# -*- coding: utf-8-*-
 from datetime import datetime
 from pony.orm import *
 from pymysql.converters import encoders, decoders, convert_mysql_timestamp

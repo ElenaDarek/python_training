@@ -1,5 +1,4 @@
 # -*- coding: utf-8-*-
-from selenium.webdriver.support.ui import Select
 from model.contact import Contact
 import re
 
@@ -52,6 +51,28 @@ class ContactHelper:
     def select_contact_by_id(self, id):
         wd = self.app.wd
         wd.find_element_by_css_selector("input[value='%s']" % id).click()
+
+    def add_to_group(self, group_id, contact_id):
+        wd = self.app.wd
+        self.select_contact_by_id(contact_id)
+        self.select_group_in_dropdown(group_id)
+        wd.find_element_by_name("add").click()
+        self.app.open_home_page()
+
+    def filter_for_group(self, id):
+        wd = self.app.wd
+        wd.find_element_by_name("group").click()
+        wd.find_element_by_xpath("//select[@name='group']//option[@value='%s']" % id).click()
+
+    def remove_from_group(self, group_id, contact_id):
+        wd = self.app.wd
+        self.filter_for_group(group_id)
+        self.select_contact_by_id(contact_id)
+        wd.find_element_by_name("remove").click()
+
+    def select_group_in_dropdown(self, id):
+        wd = self.app.wd
+        wd.find_element_by_xpath("//select[@name='to_group']//option[@value='%s']" % id).click()
 
     def delete_first_group(self):
         self.delete_contact_by_index(0)

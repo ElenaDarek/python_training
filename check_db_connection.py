@@ -1,9 +1,14 @@
 from fixture.orm import ORMFixture
 
-db = ORMFixture(host="127.0.0.1", name="addressbook", user="root", password="")
+__author__ = 'tester'
+
+from fixture.orm import ORMFixture
+from model.group import Group
+
+check = ORMFixture(host="127.0.0.1", name="addressbook", user="root", password="")
 
 try:
-    l = db.get_contact_list()
+    l = check.get_contacts_in_group(Group(id="194"))
     for item in l:
         print(item)
     print(len(l))
